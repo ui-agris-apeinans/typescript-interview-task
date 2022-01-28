@@ -7,8 +7,6 @@ const itemHasOldPassword = (item: IItem) => {
     const itemTime = new Date(item.createdAt).getTime();
     const timeDiff = currentTime - itemTime;
 
-    console.log(currentTime)
-    console.log(itemTime)
     return timeDiff > thirtyDays;
 };
 
