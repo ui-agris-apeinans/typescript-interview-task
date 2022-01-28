@@ -1,9 +1,10 @@
 export enum Routes {
+  Root = '/',
   Login = '/login',
   PasswordHealth = '/items',
   Weak = '/items/weak',
   Reused = '/items/reused',
-  Root = '/',
+  Old = '/items/old',
 }
 
 export enum API {
