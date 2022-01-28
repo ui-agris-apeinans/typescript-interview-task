@@ -6,8 +6,8 @@ import { addToken, removeToken, getTokenOwner, generateToken } from '../services
 const router = Router();
 
 // if password and email is correct returns new token
-router.get('/api/login',timeout, (req, res) => {
-  const {username, password} = req.query;
+router.get('/api/login', timeout, (req, res) => {
+  const { username, password } = req.query;
 
   const user = users.find((user) => (
     user.username === username &&
@@ -28,7 +28,7 @@ router.get('/api/login',timeout, (req, res) => {
     return;
   }
 
-  res.status(401).send();
+  res.status(401).send({ errorMessage: 'The username or password is incorrect.' });
 });
 
 // deletes token
@@ -55,7 +55,7 @@ router.get('/api/user', (req, res) => {
       const tokenOwner = users.find((user) => (
         user.id === tokenOwnerId
       ));
-  
+
       res.status(200).json({
         id: tokenOwner.id,
         username: tokenOwner.username,

@@ -17,6 +17,11 @@ html, body, #app {
   height: 32px;
 }
 
+.error {
+  color: $red;
+  height: 1em;
+}
+
 .button {
   border-width: 0;
   border-color: $teal;

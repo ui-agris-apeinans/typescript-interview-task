@@ -1,4 +1,4 @@
-import {API} from '~/constants';
+import { API } from '~/constants';
 import getUrl from '../utils/getUrl';
 
 const login = async (username: string, password: string) => {
@@ -11,7 +11,10 @@ const login = async (username: string, password: string) => {
   const data = await response.json();
   const { token } = data;
 
-  localStorage.setItem('token', token);
+  if (token) {
+    localStorage.setItem('token', token);
+  }
+  return data
 };
 
 export default login;

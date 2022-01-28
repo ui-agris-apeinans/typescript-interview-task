@@ -16,11 +16,12 @@ const Login = () => {
     event.preventDefault();
     setErrorMessage(null);
 
-    try {
-      await login(username, password);
+    const result = await login(username, password);
+
+    if (result.errorMessage) {
+      setErrorMessage(result.errorMessage);
+    } else {
       push(Routes.PasswordHealth);
-    } catch (error) {
-      setErrorMessage(error.message);
     }
   };
 

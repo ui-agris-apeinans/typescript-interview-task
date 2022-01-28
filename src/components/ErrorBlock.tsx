@@ -1,17 +1,14 @@
-import {FC, memo} from 'react';
+import { FC, memo } from 'react';
 
 interface IErrorBlock {
   error: String
 }
 
-const ErrorBlock: FC<IErrorBlock> = ({error}) => {
-  if (!error) {
-    return null;
-  }
+const ErrorBlock: FC<IErrorBlock> = ({ error }) => {
 
   return (
-    <div>
-      {error}
+    <div className="error mt-8px">
+      {error && <span>{error}</span>}
     </div>
   )
 }
