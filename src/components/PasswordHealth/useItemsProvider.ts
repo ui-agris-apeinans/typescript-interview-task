@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import getUserItems, {IItem} from '../../services/getUserItems';
+import { useEffect, useState } from 'react';
+import getUserItems, { IItem } from '../../services/getUserItems';
 
 const userItemsProvider = () => {
   const [isLoading, setIsLoading] = useState(true);
