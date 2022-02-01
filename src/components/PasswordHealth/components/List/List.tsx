@@ -1,20 +1,23 @@
 import { FC, useState } from 'react';
-import { IItem } from "~/services/getUserItems";
-import ItemIcon from './components/ItemIcon';
-import updateItem from '../../../../services/updateItem';
 import Modal from 'react-modal';
 
+import { IItem } from "~/services/userItems";
+import ItemIcon from './components/ItemIcon';
 import './list-style.scss';
 
 interface IList {
-  items: Array<IItem>,
+  items: Array<IItem>;
+  updateItems: (IItem) => void;
 }
 
 interface IUpdateModal {
   item: IItem;
+  updateItems: (IItem) => void;
 }
 
-const UpdateModal: FC<IUpdateModal> = ({ item }) => {
+Modal.setAppElement('body');
+
+const UpdateModal: FC<IUpdateModal> = ({ item, updateItems }) => {
   const [showModal, setShowModal] = useState(false);
   const [newPass, setNewPass] = useState('');
 
@@ -38,12 +41,11 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         />
         <div className="pt-12px text-center">
           <button className="button" onClick={async () => {
-            await updateItem({
+            await updateItems({
               ...item,
               password: newPass,
             })
-
-            window.location.reload();
+            setShowModal(false)
           }}>Change</button>
           <button className="button ml-12px" onClick={() => {
             setNewPass('');
@@ -57,7 +59,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   );
 }
 
-const List: FC<IList> = ({ items }) => (
+const List: FC<IList> = ({ items, updateItems }) => (
   <ul className="list">
     {
       items.map((item) => (
@@ -71,7 +73,7 @@ const List: FC<IList> = ({ items }) => (
               {item.description}
             </div>
           </div>
-          <UpdateModal item={item} />
+          <UpdateModal item={item} updateItems={updateItems} />
         </li>
       ))
     }

@@ -2,8 +2,10 @@ import { passwords } from '../data';
 
 let items = [];
 
-export const updateItem = (item) => {
-  items.push(item);
+export const updateItem = (newItem) => {
+  const updatedItem = items.find(({ id }) => id === newItem.id)
+
+  updatedItem ? items = [...items.map(item => newItem.id === item.id ? { ...item, ...newItem } : item)] : items.push(newItem)
 };
 
 export const getItems = () => {
@@ -15,6 +17,3 @@ export const getItems = () => {
     };
   })
 };
-
-
-

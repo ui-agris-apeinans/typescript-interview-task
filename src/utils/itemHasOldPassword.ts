@@ -1,4 +1,4 @@
-import { IItem } from "~/services/getUserItems";
+import { IItem } from "~/services/userItems";
 
 const thirtyDays = 30 * 24 * 60 * 60 * 1000;
 

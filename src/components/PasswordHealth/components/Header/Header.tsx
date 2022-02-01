@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { IItem } from "~/services/getUserItems";
+import { IItem } from "~/services/userItems";
 import logout from '../../../../services/logout';
 
 import './header-style.scss';
