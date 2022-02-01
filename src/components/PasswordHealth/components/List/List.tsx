@@ -36,6 +36,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item, updateItems }) => {
         <input
           placeholder="new password"
           className="input"
+          type="password"
           value={newPass}
           onChange={(event) => setNewPass(event.target.value)}
         />
