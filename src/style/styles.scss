@@ -65,4 +65,8 @@ html, body, #app {
   left: 50%;
   transform: translateX(-50%);
   top: 38%;
+
+  input {
+    width: 100%;
+  }
 }
