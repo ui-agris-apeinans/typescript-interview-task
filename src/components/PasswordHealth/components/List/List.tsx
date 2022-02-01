@@ -40,8 +40,8 @@ const UpdateModal: FC<IUpdateModal> = ({ item, updateItems }) => {
           onChange={(event) => setNewPass(event.target.value)}
         />
         <div className="pt-12px text-center">
-          <button className="button" onClick={async () => {
-            await updateItems({
+          <button className="button" onClick={() => {
+            updateItems({
               ...item,
               password: newPass,
             })
