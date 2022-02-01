@@ -5,10 +5,13 @@ interface IErrorBlock {
 }
 
 const ErrorBlock: FC<IErrorBlock> = ({ error }) => {
+  if (!error) {
+    return null;
+  }
 
   return (
     <div className="error mt-8px">
-      {error && <span>{error}</span>}
+      {error}
     </div>
   )
 }
