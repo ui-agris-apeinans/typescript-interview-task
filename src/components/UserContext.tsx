@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { API } from '~/constants';
-import getUrl from '~/utils/getUrl';
 import { IUser, getUser } from '~/services/user';
 
 interface IUserContext extends IUser {

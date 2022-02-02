@@ -13,3 +13,5 @@ export enum API {
   Items = 'api/items',
   User = 'api/user',
 }
+
+export const thirtyDays = 30 * 24 * 60 * 60 * 1000;

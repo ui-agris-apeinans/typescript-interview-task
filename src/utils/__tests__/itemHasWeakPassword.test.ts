@@ -1,7 +1,6 @@
 import itemHasWeakPassword from '../itemHasWeakPassword';
 import { IItem } from '../../services/userItems';
 
-// Todo fix problem that causes this test to fail
 describe('should return true if password do not match requirements', () => {
   test.each([
     [

@@ -1,6 +1,5 @@
 import { IItem } from "~/services/userItems";
-
-const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+import { thirtyDays } from "../constants";
 
 const itemHasOldPassword = (item: IItem) => {
     const currentTime = new Date().getTime();
