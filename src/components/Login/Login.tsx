@@ -22,8 +22,8 @@ const Login = () => {
     const result = await login(username, password);
     setIsLoading(false)
 
-    if (result.errorMessage) {
-      setErrorMessage(result.errorMessage);
+    if (result.error) {
+      setErrorMessage(result.error);
     } else {
       push(Routes.PasswordHealth);
     }

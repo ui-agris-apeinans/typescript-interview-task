@@ -14,7 +14,7 @@ router.post('/api/items', authentication, (req, res) => {
   const { id, title, description, password } = req.body;
 
   if (!id || !title || !description || !password) {
-    res.status(400).send('mandatory parameter is missing');
+    res.status(400).send({ error: 'mandatory parameter is missing' });
     return;
   }
 

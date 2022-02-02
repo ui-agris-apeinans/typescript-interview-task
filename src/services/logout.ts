@@ -1,10 +1,9 @@
-import { History } from "history";
+import { API } from '~/constants';
+import { callAPI } from "./API";
 
-import { Routes } from "~/constants";
-
-const logout = (push: History['push']) => {
+const logout = async () => {
+    await callAPI(API.Logout, true);
     localStorage.removeItem('token');
-    push(Routes.Login);
 };
 
 export default logout;

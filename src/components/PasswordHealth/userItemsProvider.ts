@@ -10,11 +10,12 @@ const userItemsProvider = () => {
   const fetchItems = async () => {
     setIsLoading(true);
 
-    try {
-      const userItems = await getUserItems();
-      setItems(userItems);
-    } catch (error) {
-      setErrorMessage(error.message);
+    const data = await getUserItems();
+
+    if (data.items) {
+      setItems(data.items);
+    } else {
+      setErrorMessage(data.error);
     }
 
     setIsLoading(false);
@@ -23,12 +24,12 @@ const userItemsProvider = () => {
   const updateItems = async (item: IItem) => {
     setIsLoading(true);
 
-    try {
-      const userItems = await updateItem(item);
+    const data = await updateItem(item);
 
-      setItems(userItems);
-    } catch (error) {
-      setErrorMessage(error.message);
+    if (data.items) {
+      setItems(data.items);
+    } else {
+      setErrorMessage(data.error);
     }
 
     setIsLoading(false);

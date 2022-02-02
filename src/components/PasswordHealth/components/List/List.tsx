@@ -38,7 +38,6 @@ const UpdateModal: FC<IUpdateModal> = ({ item, updateItems }) => {
   }
 
   const onCloseModal = () => {
-    console.log('close')
     setNewPass('');
     setError('');
     setShowModal(false)

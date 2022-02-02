@@ -1,5 +1,5 @@
 import { API } from "~/constants";
-import getUrl from "~/utils/getUrl";
+import { callAPI } from "./API";
 
 export interface IItem {
     id: string,
@@ -9,33 +9,27 @@ export interface IItem {
     createdAt: string,
 }
 
-export const getUserItems = async (userId?: string): Promise<Array<IItem>> => {
-    const url = getUrl(API.Items, {
+interface Response {
+    items: IItem[],
+    error?: string
+}
+
+export const getUserItems = async (userId?: string): Promise<Response> => {
+    const data = await callAPI(API.Items, true, {
         userId,
     });
 
-    const response = await fetch(url, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    });
-
-    const data = await response.json();
-
-    return data.items;
+    return data;
 };
 
-export const updateItem = async (item: IItem): Promise<Array<IItem>> => {
-    const response = await fetch(getUrl(API.Items), {
+export const updateItem = async (item: IItem): Promise<Response> => {
+    const data = await callAPI(API.Items, true, {
         method: "POST",
         body: JSON.stringify(item),
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
 
-    const data = await response.json();
-
-    return data.items;
+    return data;
 }
