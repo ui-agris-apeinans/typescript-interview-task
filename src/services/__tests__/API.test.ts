@@ -1,28 +1,34 @@
 import { API } from '../../constants';
-import { callAPI } from '../API';
+import { callAPI, errorObj } from '../API';
 
-// beforeEach(() => {
-//     fetchMock.resetMocks();
-// });
+beforeEach(() => {
+    fetchMock.resetMocks();
+});
 
-const mockUrl = 'api';
+const mockUrl = 'mockUrl';
+const mockParams = {
+    param: 'param',
+    headers: {
+        Authorization: 'Bearer 12345',
+        'Content-Type': 'application/json',
+    }
+}
+const mockResponse = { data: 123 };
 
-// mocks "fetch" so our call function runs mockedFetch
-//  
 describe('callAPI', () => {
-    test('should call passed url and return posts array', async () => {
-        // fetchMock.mockResponseOnce(JSON.stringify(mockPosts));
-        const response = await callAPI(API.Login);
+    test('should call fetch with passed params and returns data', async () => {
+        localStorage.setItem('token', '12345');
+        fetchMock.mockResponseOnce(JSON.stringify(mockResponse), { headers: { 'Content-Type': 'application/json' } });
+        const response = await callAPI(mockUrl as API, true, mockParams);
 
-        // expect(fetchMock).toHaveBeenCalledWith(mockUrl);
-        // expect(fetchMock).toHaveBeenCalledTimes(1);
-        // expect(response).toEqual(mockPosts);
+        expect(fetchMock.mock.calls[0][1]).toEqual(mockParams);
+        expect(response).toEqual(mockResponse);
     });
 
-    test('should return defaultError on api failure', async () => {
-        // fetchMock.mockReject();
-        // const response = await callAPI(mockUrl);
+    test('should return errorObj on api failure', async () => {
+        fetchMock.mockReject();
+        const response = await callAPI(mockUrl);
 
-        // expect(response).toEqual(defaultError);
+        expect(response).toEqual(errorObj);
     });
 })
