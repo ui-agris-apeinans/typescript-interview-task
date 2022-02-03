@@ -35,7 +35,7 @@ const PasswordHealth: React.FC = () => {
   }
 
   return (
-    <div className="container">
+    <div data-testid="passwordHealth" className="container">
       <Header items={items} username={username} />
       <Filter items={items} />
       <Switch>

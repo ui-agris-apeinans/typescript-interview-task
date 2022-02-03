@@ -1,5 +1,5 @@
 const LoadingScreen = () => (
-  <div className="loading-screen">
+  <div data-testid="loadingScreen" className="loading-screen">
     <div className="loader" />Loading...
   </div>
 )

@@ -1,3 +1,5 @@
+import fetchMock from "jest-fetch-mock";
+
 import { API } from '../../constants';
 import { callAPI, errorObj } from '../API';
 
@@ -27,7 +29,7 @@ describe('callAPI', () => {
 
     test('should return errorObj on api failure', async () => {
         fetchMock.mockReject();
-        const response = await callAPI(mockUrl);
+        const response = await callAPI(mockUrl as API);
 
         expect(response).toEqual(errorObj);
     });

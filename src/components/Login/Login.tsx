@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
+    <div data-testid="login" className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
         {isLoading ? <LoadingScreen /> : <>
           <h1 className="text-center">
