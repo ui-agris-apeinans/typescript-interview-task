@@ -1,20 +1,16 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { API } from '~/constants';
-import getUrl from '~/utils/getUrl';
+import { IUser, getUser } from '~/services/user';
 
-interface IUser {
+interface IUserContext extends IUser {
   updateUser: () => void;
   deleteData: () => void;
   errorMessage: string;
   isLoading: boolean;
-  username: string;
-  email: string;
-  id: string;
 }
 
-const UserContext = createContext<IUser>({
-  updateUser: () => {},
-  deleteData: () => {},
+const UserContext = createContext<IUserContext>({
+  updateUser: () => { },
+  deleteData: () => { },
   errorMessage: null,
   isLoading: true,
   username: null,
@@ -35,20 +31,14 @@ export const UserContextProvider = ({ children }) => {
     setErrorMessage(null);
     setIsLoading(true);
 
-    try {
-      const response = await fetch(getUrl(API.User), {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        }
-      });
+    const data = await getUser();
 
-      const data = await response.json();
-
-      setUsername(data?.username);
-      setEmail(data?.email);
-      setId(data?.id);
-    } catch (error) {
-      setErrorMessage(error.message);
+    if (!data.error) {
+      setUsername(data.username);
+      setEmail(data.email);
+      setId(data.id);
+    } else {
+      setErrorMessage(data.error);
     }
 
     setIsLoading(false);
@@ -63,7 +53,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-   updateUser();
+    updateUser();
   }, []);
 
   const value = {
