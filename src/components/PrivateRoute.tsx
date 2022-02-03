@@ -12,6 +12,7 @@ const PrivateRoute: FC<RouteProps> = ({
 
   if (!token) {
     push(Routes.Login);
+    return null
   }
 
   return <Route path={path} component={component} />

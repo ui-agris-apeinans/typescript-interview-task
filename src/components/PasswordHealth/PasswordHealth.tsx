@@ -39,7 +39,7 @@ const PasswordHealth: React.FC = () => {
       <Header items={items} username={username} />
       <Filter items={items} />
       <Switch>
-        <Route exact path={Routes.PasswordHealth}>
+        <Route exact path={[Routes.PasswordHealth, Routes.Root]}>
           <List items={items} updateItems={updateItems} />
         </Route>
         <Route path={Routes.Weak}>
